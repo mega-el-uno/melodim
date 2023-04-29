@@ -9,8 +9,4 @@ public abstract class SafeAbstractCommand<I, O> extends Command<I, O> {
             throw new Exception(exception);
         }
     }
-
-    public abstract void preExecute();
-
-    public abstract void postExecute();
 }
