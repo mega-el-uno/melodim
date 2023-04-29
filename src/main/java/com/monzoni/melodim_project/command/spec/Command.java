@@ -1,9 +1,15 @@
 package com.monzoni.melodim_project.command.spec;
 
-public interface Command<I, O> {
-    void setInput(I input);
+public abstract class Command<I, O> {
+    protected I input;
+    protected O output;
+    public void setInput(I input){
+        this.input = input;
+    }
 
-    O getOutput();
+    public O getOutput(){
+        return this.getOutput();
+    }
 
-    void execute();
+    abstract protected void execute();
 }
