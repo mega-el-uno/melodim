@@ -1,6 +1,8 @@
 package com.monzoni.melodim_project.service;
 
+import com.monzoni.melodim_project.dto.request.CreateArtistRequest;
 import com.monzoni.melodim_project.dto.response.ArtistResponse;
+import com.monzoni.melodim_project.dto.response.CreateArtistResponse;
 import com.monzoni.melodim_project.mapper.ArtistMapper;
 import com.monzoni.melodim_project.repository.ArtistRepository;
 import com.monzoni.melodim_project.repository.entity.ArtistEntity;
@@ -27,6 +29,12 @@ public class ArtistServiceImpl implements ArtistService {
         return artistEntityList.stream()
                 .map(artistMapper::mapperToArtistResponse)
                 .collect(Collectors.toList());
-
     }
+
+    @Override
+    public ArtistResponse saveNewArtist(CreateArtistRequest createArtistRequest) {
+        ArtistEntity artistEntity = artistMapper.mapperToArtistEntity(createArtistRequest);
+        return artistMapper.mapperToArtistResponse(artistRepository.save(artistEntity));
+    }
+
 }

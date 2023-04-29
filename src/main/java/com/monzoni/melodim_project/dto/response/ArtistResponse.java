@@ -10,5 +10,6 @@ import java.time.LocalDate;
 public class ArtistResponse {
     private Integer id;
     private String name;
+    private String type;
     private LocalDate creationDate;
 }

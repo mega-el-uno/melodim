@@ -1,8 +1,11 @@
 package com.monzoni.melodim_project.mapper;
 
 
+import com.monzoni.melodim_project.dto.request.CreateArtistRequest;
 import com.monzoni.melodim_project.dto.response.ArtistResponse;
+import com.monzoni.melodim_project.dto.response.CreateArtistResponse;
 import com.monzoni.melodim_project.dto.response.GetAllArtistListResponse;
+import com.monzoni.melodim_project.repository.ArtistRepository;
 import com.monzoni.melodim_project.repository.entity.ArtistEntity;
 import com.monzoni.melodim_project.util.constant.ResponseConstant.SuccessResponse;
 import org.mapstruct.Mapper;
@@ -19,4 +22,12 @@ public interface ArtistMapper {
     }
 
     GetAllArtistListResponse toGetAllArtistListResponse(String code, String message, List<ArtistResponse> artistResponseList);
+
+    ArtistEntity mapperToArtistEntity(CreateArtistRequest source);
+    default CreateArtistResponse mapperToCreateArtistResponse(ArtistResponse artistResponse) {
+        return toCreateArtistResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, artistResponse);
+    }
+
+    CreateArtistResponse toCreateArtistResponse(String code, String message, ArtistResponse artistResponse);
+
 }

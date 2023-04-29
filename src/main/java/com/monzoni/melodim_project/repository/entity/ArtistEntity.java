@@ -15,6 +15,8 @@ public class ArtistEntity {
     private Integer id;
     @Column(name = "name_")
     private String name;
+    @Column(name = "type_")
+    private String type;
     @Column(name = "creation_date_")
     private LocalDate creationDate;
 }
