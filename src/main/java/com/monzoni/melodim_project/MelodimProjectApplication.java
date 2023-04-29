@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class MelodimProjectApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MelodimProjectApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MelodimProjectApplication.class, args);
+    }
 
 }
