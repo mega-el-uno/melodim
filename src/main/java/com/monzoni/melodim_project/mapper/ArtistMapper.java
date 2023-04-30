@@ -7,7 +7,6 @@ import com.monzoni.melodim_project.dto.response.ArtistResponse;
 import com.monzoni.melodim_project.dto.response.CreateArtistResponse;
 import com.monzoni.melodim_project.dto.response.GetAllArtistListResponse;
 import com.monzoni.melodim_project.dto.response.UpdateArtistResponse;
-import com.monzoni.melodim_project.repository.ArtistRepository;
 import com.monzoni.melodim_project.repository.entity.ArtistEntity;
 import com.monzoni.melodim_project.util.constant.ResponseConstant.SuccessResponse;
 import org.mapstruct.Mapper;
