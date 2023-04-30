@@ -3,8 +3,6 @@ package com.monzoni.melodim_project.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 
