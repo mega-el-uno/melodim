@@ -1,7 +1,7 @@
 package com.monzoni.melodim_project.exception;
 
 
-import com.monzoni.melodim_project.dto.response.CommonResponse;
+import com.monzoni.melodim_project.dto.response.artist.CommonResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

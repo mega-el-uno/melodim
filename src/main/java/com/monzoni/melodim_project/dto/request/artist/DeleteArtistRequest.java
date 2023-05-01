@@ -1,4 +1,4 @@
-package com.monzoni.melodim_project.dto.request;
+package com.monzoni.melodim_project.dto.request.artist;
 
 import lombok.Getter;
 import lombok.Setter;

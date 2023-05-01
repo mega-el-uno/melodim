@@ -1,9 +1,9 @@
 package com.monzoni.melodim_project.service;
 
-import com.monzoni.melodim_project.dto.request.CreateArtistRequest;
-import com.monzoni.melodim_project.dto.request.DeleteArtistRequest;
-import com.monzoni.melodim_project.dto.request.UpdateArtistRequest;
-import com.monzoni.melodim_project.dto.response.ArtistResponse;
+import com.monzoni.melodim_project.dto.request.artist.CreateArtistRequest;
+import com.monzoni.melodim_project.dto.request.artist.DeleteArtistRequest;
+import com.monzoni.melodim_project.dto.request.artist.UpdateArtistRequest;
+import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.mapper.ArtistMapper;
 import com.monzoni.melodim_project.repository.ArtistRepository;

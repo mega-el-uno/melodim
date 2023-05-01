@@ -1,11 +1,11 @@
-package com.monzoni.melodim_project.command;
+package com.monzoni.melodim_project.command.artist;
 
 import com.monzoni.melodim_project.command.spec.PostExecutorCommand;
 import com.monzoni.melodim_project.command.spec.PreExecutorCommand;
 import com.monzoni.melodim_project.command.spec.SafeAbstractCommand;
 import com.monzoni.melodim_project.dto.request.DefaultRequest;
-import com.monzoni.melodim_project.dto.response.ArtistResponse;
-import com.monzoni.melodim_project.dto.response.GetAllArtistListResponse;
+import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
+import com.monzoni.melodim_project.dto.response.artist.GetAllArtistListResponse;
 import com.monzoni.melodim_project.mapper.ArtistMapper;
 import com.monzoni.melodim_project.service.ArtistService;
 import com.monzoni.melodim_project.util.function.Utils;

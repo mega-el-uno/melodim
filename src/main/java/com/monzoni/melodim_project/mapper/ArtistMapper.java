@@ -1,9 +1,9 @@
 package com.monzoni.melodim_project.mapper;
 
 
-import com.monzoni.melodim_project.dto.request.CreateArtistRequest;
-import com.monzoni.melodim_project.dto.request.UpdateArtistRequest;
-import com.monzoni.melodim_project.dto.response.*;
+import com.monzoni.melodim_project.dto.request.artist.CreateArtistRequest;
+import com.monzoni.melodim_project.dto.request.artist.UpdateArtistRequest;
+import com.monzoni.melodim_project.dto.response.artist.*;
 import com.monzoni.melodim_project.repository.entity.ArtistEntity;
 import com.monzoni.melodim_project.util.constant.ResponseConstant.SuccessResponse;
 import org.mapstruct.Mapper;
