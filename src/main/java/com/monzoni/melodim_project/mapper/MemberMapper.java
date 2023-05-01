@@ -1,7 +1,5 @@
 package com.monzoni.melodim_project.mapper;
 
-import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
-import com.monzoni.melodim_project.dto.response.artist.GetAllArtistListResponse;
 import com.monzoni.melodim_project.dto.response.member.GetAllMemberListResponse;
 import com.monzoni.melodim_project.dto.response.member.MemberResponse;
 import com.monzoni.melodim_project.repository.entity.MemberEntity;
