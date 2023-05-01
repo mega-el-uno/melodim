@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class UpdateMemberRequest {
+    private Integer id;
     private String name;
     private String lastName;
     private LocalDate birthDate;

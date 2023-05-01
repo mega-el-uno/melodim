@@ -6,6 +6,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateMemberResponse extends CommonResponse {
-    MemberResponse memberResponse;
+public class DeleteMemberResponse extends CommonResponse {
+    private MemberResponse memberResponse;
 }

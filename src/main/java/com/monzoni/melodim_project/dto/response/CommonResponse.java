@@ -1,4 +1,4 @@
-package com.monzoni.melodim_project.dto.response.artist;
+package com.monzoni.melodim_project.dto.response;
 
 
 import lombok.AllArgsConstructor;
