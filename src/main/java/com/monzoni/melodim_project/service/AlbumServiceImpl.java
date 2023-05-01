@@ -1,13 +1,16 @@
 package com.monzoni.melodim_project.service;
 
 import com.monzoni.melodim_project.dto.request.album.CreateAlbumRequest;
+import com.monzoni.melodim_project.dto.request.album.UpdateAlbumRequest;
 import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
+import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.mapper.AlbumMapper;
 import com.monzoni.melodim_project.repository.AlbumRepository;
 import com.monzoni.melodim_project.repository.entity.AlbumEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,5 +36,20 @@ public class AlbumServiceImpl implements AlbumService {
     public AlbumResponse saveNewAlbum(CreateAlbumRequest createAlbumRequest) {
         AlbumEntity albumEntity = albumMapper.mapperToAlbumEntity(createAlbumRequest);
         return albumMapper.mapperToAlbumResponse(albumRepository.save(albumEntity));
+    }
+
+    @Override
+    public AlbumResponse UpdateAlbum(UpdateAlbumRequest updateAlbumRequest) {
+        Optional<AlbumEntity> albumEntity = albumRepository.findById(updateAlbumRequest.getId());
+        if(albumEntity.isPresent()){
+            AlbumEntity preEntity = albumEntity.get();
+            albumMapper.mapperToAlbumEntity(updateAlbumRequest, preEntity);
+            AlbumEntity postEntity = albumRepository.save(preEntity);
+
+            return albumMapper.mapperToAlbumResponse(postEntity);
+        }else{
+            throw new ProcessErrorException("The album with ID: "+updateAlbumRequest.getId()+" does not exist");
+        }
+
     }
 }
