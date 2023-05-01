@@ -1,6 +1,7 @@
 package com.monzoni.melodim_project.service;
 
 import com.monzoni.melodim_project.dto.request.album.CreateAlbumRequest;
+import com.monzoni.melodim_project.dto.request.album.DeleteAlbumRequest;
 import com.monzoni.melodim_project.dto.request.album.UpdateAlbumRequest;
 import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
@@ -51,5 +52,18 @@ public class AlbumServiceImpl implements AlbumService {
             throw new ProcessErrorException("The album with ID: "+updateAlbumRequest.getId()+" does not exist");
         }
 
+    }
+
+    @Override
+    public AlbumResponse DeleteAlbum(DeleteAlbumRequest deleteAlbumRequest) {
+        Optional<AlbumEntity> albumEntity = albumRepository.findById(deleteAlbumRequest.getId());
+        albumRepository.deleteById(deleteAlbumRequest.getId());
+        return albumMapper.mapperToAlbumResponse(albumEntity.get());
+    }
+
+    @Override
+    public Boolean existAlbumById(Integer id) {
+        Optional<AlbumEntity> albumEntity = albumRepository.findById(id);
+        return albumEntity.isPresent();
     }
 }

@@ -1,6 +1,7 @@
 package com.monzoni.melodim_project.service;
 
 import com.monzoni.melodim_project.dto.request.album.CreateAlbumRequest;
+import com.monzoni.melodim_project.dto.request.album.DeleteAlbumRequest;
 import com.monzoni.melodim_project.dto.request.album.UpdateAlbumRequest;
 import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
 
@@ -10,4 +11,6 @@ public interface AlbumService {
     List<AlbumResponse> getAllAlbumList();
     AlbumResponse saveNewAlbum(CreateAlbumRequest createAlbumRequest);
     AlbumResponse UpdateAlbum(UpdateAlbumRequest updateAlbumRequest);
+    AlbumResponse DeleteAlbum(DeleteAlbumRequest deleteAlbumRequest);
+    Boolean existAlbumById(Integer id);
 }

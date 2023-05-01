@@ -2,10 +2,7 @@ package com.monzoni.melodim_project.mapper;
 
 import com.monzoni.melodim_project.dto.request.album.CreateAlbumRequest;
 import com.monzoni.melodim_project.dto.request.album.UpdateAlbumRequest;
-import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
-import com.monzoni.melodim_project.dto.response.album.CreateAlbumResponse;
-import com.monzoni.melodim_project.dto.response.album.GetAllAlbumListResponse;
-import com.monzoni.melodim_project.dto.response.album.UpdateAlbumResponse;
+import com.monzoni.melodim_project.dto.response.album.*;
 import com.monzoni.melodim_project.dto.response.artist.UpdateArtistResponse;
 import com.monzoni.melodim_project.repository.entity.AlbumEntity;
 import com.monzoni.melodim_project.util.constant.ResponseConstant;
@@ -19,6 +16,7 @@ import java.util.List;
 public interface AlbumMapper {
     AlbumResponse mapperToAlbumResponse(AlbumEntity source);
     AlbumEntity mapperToAlbumEntity(CreateAlbumRequest source);
+    void mapperToAlbumEntity(UpdateAlbumRequest source,@MappingTarget AlbumEntity target);
 
     default GetAllAlbumListResponse mapperToGetAllAlbumListResponse(List<AlbumResponse> albumResponseList) {
         return toGetAllAlbumListResponse(ResponseConstant.SuccessResponse.CODE, ResponseConstant.SuccessResponse.MESSAGE, albumResponseList);
@@ -36,6 +34,9 @@ public interface AlbumMapper {
     }
     UpdateAlbumResponse toUpdateAlbumResponse(String code, String message, AlbumResponse albumResponse);
 
-    void mapperToAlbumEntity(UpdateAlbumRequest source,@MappingTarget AlbumEntity target);
+    default DeleteAlbumResponse mapperToDeleteAlbumResponse(AlbumResponse albumResponse) {
+        return toDeleteAlbumResponse(ResponseConstant.SuccessResponse.CODE, ResponseConstant.SuccessResponse.MESSAGE, albumResponse);
+    }
+    DeleteAlbumResponse toDeleteAlbumResponse(String code, String message, AlbumResponse albumResponse);
 
 }
