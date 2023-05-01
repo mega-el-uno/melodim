@@ -1,5 +1,7 @@
 package com.monzoni.melodim_project.command.spec;
 
+import com.monzoni.melodim_project.exception.CommandException;
+
 public class SafeCommandExecutor<I, O> implements CommandExecutor<I, O> {
     @Override
     public void preExecute(Command<I, O> instance) {
@@ -12,7 +14,7 @@ public class SafeCommandExecutor<I, O> implements CommandExecutor<I, O> {
     public void execute(Command<I, O> instance) {
     }
 
-    public void safeExecution(Command<I, O> instance) throws Exception {
+    public void safeExecution(Command<I, O> instance) throws CommandException {
         this.preExecute(instance);
         ((SafeAbstractCommand<I, O>) instance).safeExecute();
         this.postExecute(instance);

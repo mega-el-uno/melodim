@@ -13,8 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Collectors;
-
 @Slf4j
 @Service
 public class CreateAlbumCommand
@@ -46,7 +44,7 @@ public class CreateAlbumCommand
     @Override
     public void postExecute() {
         log.info("createAlbumCommand - PostExecute");
-        if(Utils.isNull(this.output.getAlbumResponse())){
+        if (Utils.isNull(this.output.getAlbumResponse())) {
             this.output.setAlbumResponse(new AlbumResponse());
         }
     }

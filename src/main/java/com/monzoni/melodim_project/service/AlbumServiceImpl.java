@@ -42,14 +42,14 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public AlbumResponse UpdateAlbum(UpdateAlbumRequest updateAlbumRequest) {
         Optional<AlbumEntity> albumEntity = albumRepository.findById(updateAlbumRequest.getId());
-        if(albumEntity.isPresent()){
+        if (albumEntity.isPresent()) {
             AlbumEntity preEntity = albumEntity.get();
             albumMapper.mapperToAlbumEntity(updateAlbumRequest, preEntity);
             AlbumEntity postEntity = albumRepository.save(preEntity);
 
             return albumMapper.mapperToAlbumResponse(postEntity);
-        }else{
-            throw new ProcessErrorException("The album with ID: "+updateAlbumRequest.getId()+" does not exist");
+        } else {
+            throw new ProcessErrorException("The album with ID: " + updateAlbumRequest.getId() + " does not exist");
         }
 
     }

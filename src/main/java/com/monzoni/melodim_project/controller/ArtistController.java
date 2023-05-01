@@ -28,27 +28,27 @@ public class ArtistController {
     private final DeleteArtistCommand deleteArtistCommand;
 
     @GetMapping(value = "/GetAllArtistList", produces = MediaType.APPLICATION_JSON_VALUE)
-    public GetAllArtistListResponse getAllArtistList() throws Exception {
+    public GetAllArtistListResponse getAllArtistList() {
         (new SafeCommandExecutor<DefaultRequest, GetAllArtistListResponse>()).safeExecution(getAllArtistListCommand);
         return getAllArtistListCommand.getOutput();
     }
 
     @PostMapping(value = "/CreateArtist", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public CreateArtistResponse createArtist(@Valid @RequestBody CreateArtistRequest request) throws Exception {
+    public CreateArtistResponse createArtist(@Valid @RequestBody CreateArtistRequest request) {
         createArtistCommand.setInput(request);
         (new SafeCommandExecutor<CreateArtistRequest, CreateArtistResponse>()).safeExecution(createArtistCommand);
         return createArtistCommand.getOutput();
     }
 
     @PutMapping(value = "/UpdateArtist", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public UpdateArtistResponse updateArtist(@Valid @RequestBody UpdateArtistRequest request) throws Exception {
+    public UpdateArtistResponse updateArtist(@Valid @RequestBody UpdateArtistRequest request) {
         updateArtistCommand.setInput(request);
         (new SafeCommandExecutor<UpdateArtistRequest, UpdateArtistResponse>()).safeExecution(updateArtistCommand);
         return updateArtistCommand.getOutput();
     }
 
     @DeleteMapping(value = "/DeleteArtist", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public DeleteArtistResponse deleteArtist(@Valid @RequestBody DeleteArtistRequest request) throws Exception {
+    public DeleteArtistResponse deleteArtist(@Valid @RequestBody DeleteArtistRequest request) {
         deleteArtistCommand.setInput(request);
         (new SafeCommandExecutor<DeleteArtistRequest, DeleteArtistResponse>()).safeExecution(deleteArtistCommand);
         return deleteArtistCommand.getOutput();

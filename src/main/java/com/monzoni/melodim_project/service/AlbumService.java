@@ -9,8 +9,12 @@ import java.util.List;
 
 public interface AlbumService {
     List<AlbumResponse> getAllAlbumList();
+
     AlbumResponse saveNewAlbum(CreateAlbumRequest createAlbumRequest);
+
     AlbumResponse UpdateAlbum(UpdateAlbumRequest updateAlbumRequest);
+
     AlbumResponse DeleteAlbum(DeleteAlbumRequest deleteAlbumRequest);
+
     Boolean existAlbumById(Integer id);
 }

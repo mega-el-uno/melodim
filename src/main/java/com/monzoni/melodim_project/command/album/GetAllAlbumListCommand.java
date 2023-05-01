@@ -44,7 +44,7 @@ public class GetAllAlbumListCommand
     @Override
     public void postExecute() {
         log.info("GetAllAlbumListCommand - PostExecute");
-        if (Utils.isNull(this.output.getAlbumResponseList())){
+        if (Utils.isNull(this.output.getAlbumResponseList())) {
             this.output.setAlbumResponseList(Collections.emptyList());
         }
     }

@@ -30,8 +30,8 @@ public class DeleteAlbumCommand
     @Override
     public void preExecute() {
         log.info("DeleteAlbumCommand PreExecute");
-        if(!albumService.existAlbumById(this.input.getId())){
-            throw new ProcessErrorException("The album with ID: "+this.input.getId()+" does not exist");
+        if (!albumService.existAlbumById(this.input.getId())) {
+            throw new ProcessErrorException("The album with ID: " + this.input.getId() + " does not exist");
         }
     }
 
