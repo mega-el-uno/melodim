@@ -2,18 +2,18 @@ package com.monzoni.melodim_project.controller;
 
 import com.monzoni.melodim_project.command.member.CreateMemberCommand;
 import com.monzoni.melodim_project.command.member.GetAllMemberListCommand;
+import com.monzoni.melodim_project.command.member.UpdateMemberCommand;
 import com.monzoni.melodim_project.command.spec.SafeCommandExecutor;
 import com.monzoni.melodim_project.dto.request.DefaultRequest;
 import com.monzoni.melodim_project.dto.request.member.CreateMemberRequest;
+import com.monzoni.melodim_project.dto.request.member.UpdateMemberRequest;
 import com.monzoni.melodim_project.dto.response.album.CreateAlbumResponse;
 import com.monzoni.melodim_project.dto.response.member.CreateMemberResponse;
 import com.monzoni.melodim_project.dto.response.member.GetAllMemberListResponse;
+import com.monzoni.melodim_project.dto.response.member.UpdateMemberResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,6 +22,7 @@ import javax.validation.Valid;
 public class MemberController {
     private final GetAllMemberListCommand getAllMemberListCommand;
     private final CreateMemberCommand createMemberCommand;
+    private final UpdateMemberCommand updateMemberCommand;
 
     @GetMapping(value = "/GetAllMemberList", produces = MediaType.APPLICATION_JSON_VALUE)
     GetAllMemberListResponse getAllMemberList(){
@@ -33,5 +34,11 @@ public class MemberController {
         createMemberCommand.setInput(createMemberRequest);
         (new SafeCommandExecutor<CreateMemberRequest, CreateMemberResponse>()).safeExecution(createMemberCommand);
         return createMemberCommand.getOutput();
+    }
+    @PutMapping(value = "/UpdateMember", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    UpdateMemberResponse updateMember(@Valid @RequestBody UpdateMemberRequest updateMemberRequest){
+        updateMemberCommand.setInput(updateMemberRequest);
+        (new SafeCommandExecutor<UpdateMemberRequest, UpdateMemberResponse>()).safeExecution(updateMemberCommand);
+        return updateMemberCommand.getOutput();
     }
 }
