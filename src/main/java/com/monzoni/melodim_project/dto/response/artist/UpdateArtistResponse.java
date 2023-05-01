@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateArtistResponse extends CommonResponse{
+public class UpdateArtistResponse extends CommonResponse {
     private ArtistResponse artistResponse;
 }

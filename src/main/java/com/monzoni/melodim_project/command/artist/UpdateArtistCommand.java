@@ -20,8 +20,8 @@ import java.util.Arrays;
 @Slf4j
 @Service
 public class UpdateArtistCommand
-            extends SafeAbstractCommand<UpdateArtistRequest, UpdateArtistResponse>
-            implements PreExecutorCommand, PostExecutorCommand {
+        extends SafeAbstractCommand<UpdateArtistRequest, UpdateArtistResponse>
+        implements PreExecutorCommand, PostExecutorCommand {
     private final ArtistService artistService;
     private final ArtistMapper artistMapper;
 
@@ -34,16 +34,17 @@ public class UpdateArtistCommand
     @Override
     public void preExecute() {
         log.info("UpdateArtistCommand - PreExecute");
-        if(!Utils.isNull(this.input.getType())){
+        if (!Utils.isNull(this.input.getType())) {
             boolean isTypeValid = Arrays.stream(ArtistType.values())
                     .anyMatch(artistType ->
                             artistType.name().equalsIgnoreCase(this.input.getType().toUpperCase())
                     );
-            if(!isTypeValid){
+            if (!isTypeValid) {
                 throw new ProcessErrorException("The type to update a Artist is not valid");
             }
         }
     }
+
     @Override
     protected void execute() {
         log.info("UpdateArtistCommand - Execute");
@@ -54,7 +55,7 @@ public class UpdateArtistCommand
     @Override
     public void postExecute() {
         log.info("UpdateArtistCommand - PostExecute");
-        if(Utils.isNull(this.output.getArtistResponse())){
+        if (Utils.isNull(this.output.getArtistResponse())) {
             this.output.setArtistResponse(new ArtistResponse());
         }
     }

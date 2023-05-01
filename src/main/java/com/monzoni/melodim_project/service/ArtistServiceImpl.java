@@ -43,14 +43,14 @@ public class ArtistServiceImpl implements ArtistService {
     @Override
     public ArtistResponse updateArtist(UpdateArtistRequest updateArtistRequest) {
         Optional<ArtistEntity> artistEntity = artistRepository.findById(updateArtistRequest.getId());
-        if(artistEntity.isPresent()){
+        if (artistEntity.isPresent()) {
             ArtistEntity preEntity = artistEntity.get();
             artistMapper.mapperToArtistEntity(updateArtistRequest, preEntity);
             ArtistEntity postEntity = artistRepository.save(preEntity);
 
             return artistMapper.mapperToArtistResponse(postEntity);
-        }else{
-            throw new ProcessErrorException("This Artist with ID: "+updateArtistRequest.getId()+" does not exist");
+        } else {
+            throw new ProcessErrorException("This Artist with ID: " + updateArtistRequest.getId() + " does not exist");
         }
     }
 

@@ -33,7 +33,7 @@ public class DeleteArtistCommand
     public void preExecute() {
         log.info("DeleteArtistCommand PreExecute");
         if (!artistService.isArtistIdExist(this.input.getId())) {
-            throw new ProcessErrorException("The Artist with id: "+this.input.getId()+" does not exists");
+            throw new ProcessErrorException("The Artist with id: " + this.input.getId() + " does not exists");
         }
     }
 
@@ -47,7 +47,7 @@ public class DeleteArtistCommand
     @Override
     public void postExecute() {
         log.info("DeleteArtistCommand PostExecute");
-        if(Utils.isNull(this.output.getArtistResponse())){
+        if (Utils.isNull(this.output.getArtistResponse())) {
             this.output.setArtistResponse(new ArtistResponse());
         }
     }

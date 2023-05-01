@@ -30,11 +30,13 @@ public class GetAllArtistListCommand
         this.artistService = artistService;
         this.artistMapper = artistMapper;
     }
+
     @Override
     public void preExecute() {
         log.info("GetAllArtistListCommand - PreExecute");
 
     }
+
     @Override
     protected void execute() {
         log.info("GetAllArtistListCommand - Execute");
@@ -45,7 +47,7 @@ public class GetAllArtistListCommand
     @Override
     public void postExecute() {
         log.info("GetAllArtistListCommand - PostExecute");
-        if(Utils.isNull(this.output.getArtistResponseList())){
+        if (Utils.isNull(this.output.getArtistResponseList())) {
             this.output.setArtistResponseList(Collections.emptyList());
         }
     }

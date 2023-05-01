@@ -35,18 +35,19 @@ public class CreateArtistCommand
     @Override
     public void preExecute() {
         log.info("CreateArtistCommand PreExecute");
-        if(!Utils.isNull(this.input.getType())){
+        if (!Utils.isNull(this.input.getType())) {
             boolean isTypeValid = Arrays.stream(ArtistType.values())
                     .anyMatch(artistType ->
                             artistType.name().equalsIgnoreCase(this.input.getType().toUpperCase())
                     );
-            if(!isTypeValid){
+            if (!isTypeValid) {
                 throw new ProcessErrorException("The type to create a new Artist is not valid");
             }
-        }else{
+        } else {
             this.input.setType(ArtistType.ARTIST.name().toLowerCase());
         }
     }
+
     @Override
     protected void execute() {
         log.info("CreateArtistCommand Execute");
@@ -57,7 +58,7 @@ public class CreateArtistCommand
     @Override
     public void postExecute() {
         log.info("CreateArtistCommand PostExecute");
-        if(Utils.isNull(this.output.getArtistResponse())){
+        if (Utils.isNull(this.output.getArtistResponse())) {
             this.output.setArtistResponse(new ArtistResponse());
         }
     }

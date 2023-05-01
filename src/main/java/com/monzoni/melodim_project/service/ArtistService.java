@@ -10,8 +10,11 @@ import java.util.List;
 
 public interface ArtistService {
     List<ArtistResponse> getAllArtistList();
+
     ArtistResponse saveNewArtist(CreateArtistRequest createArtistRequest);
+
     ArtistResponse updateArtist(UpdateArtistRequest updateArtistRequest);
+
     ArtistResponse deleteArtist(DeleteArtistRequest deleteArtistRequest);
 
     boolean isArtistIdExist(Integer id);

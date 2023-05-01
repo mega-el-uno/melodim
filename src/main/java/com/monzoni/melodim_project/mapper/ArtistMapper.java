@@ -23,12 +23,15 @@ public interface ArtistMapper {
     GetAllArtistListResponse toGetAllArtistListResponse(String code, String message, List<ArtistResponse> artistResponseList);
 
     ArtistEntity mapperToArtistEntity(CreateArtistRequest source);
+
     default CreateArtistResponse mapperToCreateArtistResponse(ArtistResponse artistResponse) {
         return toCreateArtistResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, artistResponse);
     }
 
     CreateArtistResponse toCreateArtistResponse(String code, String message, ArtistResponse artistResponse);
+
     void mapperToArtistEntity(UpdateArtistRequest updateArtistRequest, @MappingTarget ArtistEntity artistEntity);
+
     default UpdateArtistResponse mapperToUpdateArtistResponse(ArtistResponse artistResponse) {
         return toUpdateArtistResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, artistResponse);
     }
