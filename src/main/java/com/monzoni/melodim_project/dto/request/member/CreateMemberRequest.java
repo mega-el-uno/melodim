@@ -1,6 +1,5 @@
 package com.monzoni.melodim_project.dto.request.member;
 
-import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
 import lombok.Getter;
 import lombok.Setter;
 

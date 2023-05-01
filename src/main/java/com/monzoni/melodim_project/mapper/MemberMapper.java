@@ -2,10 +2,7 @@ package com.monzoni.melodim_project.mapper;
 
 import com.monzoni.melodim_project.dto.request.member.CreateMemberRequest;
 import com.monzoni.melodim_project.dto.request.member.UpdateMemberRequest;
-import com.monzoni.melodim_project.dto.response.member.CreateMemberResponse;
-import com.monzoni.melodim_project.dto.response.member.GetAllMemberListResponse;
-import com.monzoni.melodim_project.dto.response.member.MemberResponse;
-import com.monzoni.melodim_project.dto.response.member.UpdateMemberResponse;
+import com.monzoni.melodim_project.dto.response.member.*;
 import com.monzoni.melodim_project.repository.entity.MemberEntity;
 import com.monzoni.melodim_project.util.constant.ResponseConstant.SuccessResponse;
 import org.mapstruct.Mapper;
@@ -18,6 +15,7 @@ import java.util.List;
 public interface MemberMapper {
     MemberResponse mapperToMemberResponse(MemberEntity source);
     MemberEntity mapperToMemberEntity(CreateMemberRequest createMemberRequest);
+    void mapperToMemberEntity(UpdateMemberRequest source, @MappingTarget MemberEntity target);
 
     default GetAllMemberListResponse mapperToGetAllMemberListResponse(List<MemberResponse> memberResponseList) {
         return toGetAllMemberListResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, memberResponseList);
@@ -34,5 +32,11 @@ public interface MemberMapper {
     }
     UpdateMemberResponse toUpdateMemberListResponse(String code, String message, MemberResponse memberResponse);
 
-    void mapperToMemberEntity(UpdateMemberRequest source, @MappingTarget MemberEntity target);
+
+    default DeleteMemberResponse mapperToDeleteMemberListResponse(MemberResponse memberResponse) {
+        return toDeleteMemberListResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, memberResponse);
+    }
+    DeleteMemberResponse toDeleteMemberListResponse(String code, String message, MemberResponse memberResponse);
+
+
 }

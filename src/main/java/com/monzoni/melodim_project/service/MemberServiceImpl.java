@@ -1,6 +1,7 @@
 package com.monzoni.melodim_project.service;
 
 import com.monzoni.melodim_project.dto.request.member.CreateMemberRequest;
+import com.monzoni.melodim_project.dto.request.member.DeleteMemberRequest;
 import com.monzoni.melodim_project.dto.request.member.UpdateMemberRequest;
 import com.monzoni.melodim_project.dto.response.member.MemberResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
@@ -60,6 +61,19 @@ public class MemberServiceImpl implements MemberService{
         }else{
             throw new ProcessErrorException("The member with ID: "+updateMemberRequest.getId()+" does not exist");
         }
+    }
+
+    @Override
+    public MemberResponse deleteMember(DeleteMemberRequest deleteMemberRequest) {
+        MemberEntity memberEntity = memberRepository.findById(deleteMemberRequest.getId()).get();
+        memberRepository.deleteById(deleteMemberRequest.getId());
+        return memberMapper.mapperToMemberResponse(memberEntity);
+    }
+
+    @Override
+    public Boolean existAlbumById(Integer id) {
+        Optional<MemberEntity> memberEntity = memberRepository.findById(id);
+        return memberEntity.isPresent();
     }
 
 }

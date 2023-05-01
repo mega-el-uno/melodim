@@ -1,14 +1,16 @@
 package com.monzoni.melodim_project.controller;
 
 import com.monzoni.melodim_project.command.member.CreateMemberCommand;
+import com.monzoni.melodim_project.command.member.DeleteMemberCommand;
 import com.monzoni.melodim_project.command.member.GetAllMemberListCommand;
 import com.monzoni.melodim_project.command.member.UpdateMemberCommand;
 import com.monzoni.melodim_project.command.spec.SafeCommandExecutor;
 import com.monzoni.melodim_project.dto.request.DefaultRequest;
 import com.monzoni.melodim_project.dto.request.member.CreateMemberRequest;
+import com.monzoni.melodim_project.dto.request.member.DeleteMemberRequest;
 import com.monzoni.melodim_project.dto.request.member.UpdateMemberRequest;
-import com.monzoni.melodim_project.dto.response.album.CreateAlbumResponse;
 import com.monzoni.melodim_project.dto.response.member.CreateMemberResponse;
+import com.monzoni.melodim_project.dto.response.member.DeleteMemberResponse;
 import com.monzoni.melodim_project.dto.response.member.GetAllMemberListResponse;
 import com.monzoni.melodim_project.dto.response.member.UpdateMemberResponse;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class MemberController {
     private final GetAllMemberListCommand getAllMemberListCommand;
     private final CreateMemberCommand createMemberCommand;
     private final UpdateMemberCommand updateMemberCommand;
+    private final DeleteMemberCommand deleteMemberCommand;
 
     @GetMapping(value = "/GetAllMemberList", produces = MediaType.APPLICATION_JSON_VALUE)
     GetAllMemberListResponse getAllMemberList(){
@@ -40,5 +43,11 @@ public class MemberController {
         updateMemberCommand.setInput(updateMemberRequest);
         (new SafeCommandExecutor<UpdateMemberRequest, UpdateMemberResponse>()).safeExecution(updateMemberCommand);
         return updateMemberCommand.getOutput();
+    }
+    @DeleteMapping(value = "/DeleteMember", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    DeleteMemberResponse deleteMember(@Valid @RequestBody DeleteMemberRequest deleteMemberRequest){
+        deleteMemberCommand.setInput(deleteMemberRequest);
+        (new SafeCommandExecutor<DeleteMemberRequest, DeleteMemberResponse>()).safeExecution(deleteMemberCommand);
+        return deleteMemberCommand.getOutput();
     }
 }
