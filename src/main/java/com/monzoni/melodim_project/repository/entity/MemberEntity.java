@@ -15,11 +15,11 @@ public class MemberEntity {
     private Integer id;
     @Column(name = "name_")
     private String name;
-    @Column(name = "type_")
+    @Column(name = "last_name_")
     private String lastName;
-    @Column(name = "creation_date_")
+    @Column(name = "birth_date_")
     private LocalDate birthDate;
     @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = ArtistEntity.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "artist_id_")
-    private ArtistEntity artistEntity;
+    private ArtistEntity artist;
 }

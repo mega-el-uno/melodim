@@ -4,8 +4,10 @@ import com.monzoni.melodim_project.dto.response.artist.CommonResponse;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class GetAllMemberListResponse extends CommonResponse {
-    private MemberResponse memberResponse;
+    private List<MemberResponse> memberResponseList;
 }
