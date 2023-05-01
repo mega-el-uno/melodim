@@ -1,13 +1,16 @@
 package com.monzoni.melodim_project.controller;
 
 import com.monzoni.melodim_project.command.CreateArtistCommand;
+import com.monzoni.melodim_project.command.DeleteArtistCommand;
 import com.monzoni.melodim_project.command.GetAllArtistListCommand;
 import com.monzoni.melodim_project.command.UpdateArtistCommand;
 import com.monzoni.melodim_project.command.spec.SafeCommandExecutor;
 import com.monzoni.melodim_project.dto.request.CreateArtistRequest;
 import com.monzoni.melodim_project.dto.request.DefaultRequest;
+import com.monzoni.melodim_project.dto.request.DeleteArtistRequest;
 import com.monzoni.melodim_project.dto.request.UpdateArtistRequest;
 import com.monzoni.melodim_project.dto.response.CreateArtistResponse;
+import com.monzoni.melodim_project.dto.response.DeleteArtistResponse;
 import com.monzoni.melodim_project.dto.response.GetAllArtistListResponse;
 import com.monzoni.melodim_project.dto.response.UpdateArtistResponse;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,7 @@ public class ArtistController {
     private final GetAllArtistListCommand getAllArtistListCommand;
     private final CreateArtistCommand createArtistCommand;
     private final UpdateArtistCommand updateArtistCommand;
+    private final DeleteArtistCommand deleteArtistCommand;
 
     @GetMapping(value = "/GetAllArtistList", produces = MediaType.APPLICATION_JSON_VALUE)
     public GetAllArtistListResponse getAllArtistList() throws Exception {
@@ -39,5 +43,11 @@ public class ArtistController {
         updateArtistCommand.setInput(request);
         (new SafeCommandExecutor<UpdateArtistRequest, UpdateArtistResponse>()).safeExecution(updateArtistCommand);
         return updateArtistCommand.getOutput();
+    }
+    @DeleteMapping(value = "/DeleteArtist", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public DeleteArtistResponse deleteArtist(@Valid @RequestBody DeleteArtistRequest request) throws Exception {
+        deleteArtistCommand.setInput(request);
+        (new SafeCommandExecutor<DeleteArtistRequest, DeleteArtistResponse>()).safeExecution(deleteArtistCommand);
+        return deleteArtistCommand.getOutput();
     }
 }

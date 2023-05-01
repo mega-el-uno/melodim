@@ -1,6 +1,7 @@
 package com.monzoni.melodim_project.service;
 
 import com.monzoni.melodim_project.dto.request.CreateArtistRequest;
+import com.monzoni.melodim_project.dto.request.DeleteArtistRequest;
 import com.monzoni.melodim_project.dto.request.UpdateArtistRequest;
 import com.monzoni.melodim_project.dto.response.ArtistResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
@@ -51,5 +52,18 @@ public class ArtistServiceImpl implements ArtistService {
         }else{
             throw new ProcessErrorException("This Artist with ID: "+updateArtistRequest.getId()+" does not exist");
         }
+    }
+
+    @Override
+    public ArtistResponse deleteArtist(DeleteArtistRequest deleteArtistRequest) {
+        Optional<ArtistEntity> artistEntityDeleted = artistRepository.findById(deleteArtistRequest.getId());
+        artistRepository.deleteById(deleteArtistRequest.getId());
+        return artistMapper.mapperToArtistResponse(artistEntityDeleted.get());
+    }
+
+    @Override
+    public boolean isArtistIdExist(Integer id) {
+        Optional<ArtistEntity> artistEntity = artistRepository.findById(id);
+        return artistEntity.isPresent();
     }
 }

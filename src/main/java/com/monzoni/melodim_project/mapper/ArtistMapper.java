@@ -3,10 +3,7 @@ package com.monzoni.melodim_project.mapper;
 
 import com.monzoni.melodim_project.dto.request.CreateArtistRequest;
 import com.monzoni.melodim_project.dto.request.UpdateArtistRequest;
-import com.monzoni.melodim_project.dto.response.ArtistResponse;
-import com.monzoni.melodim_project.dto.response.CreateArtistResponse;
-import com.monzoni.melodim_project.dto.response.GetAllArtistListResponse;
-import com.monzoni.melodim_project.dto.response.UpdateArtistResponse;
+import com.monzoni.melodim_project.dto.response.*;
 import com.monzoni.melodim_project.repository.entity.ArtistEntity;
 import com.monzoni.melodim_project.util.constant.ResponseConstant.SuccessResponse;
 import org.mapstruct.Mapper;
@@ -37,4 +34,10 @@ public interface ArtistMapper {
     }
 
     UpdateArtistResponse toUpdateArtistResponse(String code, String message, ArtistResponse artistResponse);
+
+    default DeleteArtistResponse mapperToDeleteArtistResponse(ArtistResponse artistResponse) {
+        return toDeleteArtistResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, artistResponse);
+    }
+
+    DeleteArtistResponse toDeleteArtistResponse(String code, String message, ArtistResponse artistResponse);
 }
