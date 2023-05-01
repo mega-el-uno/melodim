@@ -1,5 +1,6 @@
 package com.monzoni.melodim_project.service;
 
+import com.monzoni.melodim_project.dto.request.album.CreateAlbumRequest;
 import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
 import com.monzoni.melodim_project.mapper.AlbumMapper;
 import com.monzoni.melodim_project.repository.AlbumRepository;
@@ -26,5 +27,11 @@ public class AlbumServiceImpl implements AlbumService {
         return albumEntityList.stream()
                 .map(albumMapper::mapperToAlbumResponse)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public AlbumResponse saveNewAlbum(CreateAlbumRequest createAlbumRequest) {
+        AlbumEntity albumEntity = albumMapper.mapperToAlbumEntity(createAlbumRequest);
+        return albumMapper.mapperToAlbumResponse(albumRepository.save(albumEntity));
     }
 }
