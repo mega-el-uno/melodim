@@ -1,4 +1,4 @@
-package com.monzoni.melodim_project.controller;
+package com.monzoni.melodim_project.controller.member;
 
 import com.monzoni.melodim_project.command.member.CreateMemberCommand;
 import com.monzoni.melodim_project.command.member.DeleteMemberCommand;

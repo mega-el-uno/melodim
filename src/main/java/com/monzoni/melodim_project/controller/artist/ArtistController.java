@@ -1,4 +1,4 @@
-package com.monzoni.melodim_project.controller;
+package com.monzoni.melodim_project.controller.artist;
 
 import com.monzoni.melodim_project.command.artist.CreateArtistCommand;
 import com.monzoni.melodim_project.command.artist.DeleteArtistCommand;
