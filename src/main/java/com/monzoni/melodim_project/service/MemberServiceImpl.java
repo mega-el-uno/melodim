@@ -1,7 +1,6 @@
 package com.monzoni.melodim_project.service;
 
 import com.monzoni.melodim_project.dto.request.member.CreateMemberRequest;
-import com.monzoni.melodim_project.dto.request.member.DeleteMemberRequest;
 import com.monzoni.melodim_project.dto.request.member.UpdateMemberRequest;
 import com.monzoni.melodim_project.dto.response.member.MemberResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
@@ -65,9 +64,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberResponse deleteMember(DeleteMemberRequest deleteMemberRequest) {
-        MemberEntity memberEntity = memberRepository.findById(deleteMemberRequest.getId()).get();
-        memberRepository.deleteById(deleteMemberRequest.getId());
+    public MemberResponse deleteMember(Integer id) {
+        MemberEntity memberEntity = memberRepository.findById(id).get();
+        memberRepository.deleteById(id);
         return memberMapper.mapperToMemberResponse(memberEntity);
     }
 

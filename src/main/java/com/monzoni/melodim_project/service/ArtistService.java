@@ -1,7 +1,6 @@
 package com.monzoni.melodim_project.service;
 
 import com.monzoni.melodim_project.dto.request.artist.CreateArtistRequest;
-import com.monzoni.melodim_project.dto.request.artist.DeleteArtistRequest;
 import com.monzoni.melodim_project.dto.request.artist.UpdateArtistRequest;
 import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
 
@@ -15,7 +14,7 @@ public interface ArtistService {
 
     ArtistResponse updateArtist(UpdateArtistRequest updateArtistRequest);
 
-    ArtistResponse deleteArtist(DeleteArtistRequest deleteArtistRequest);
+    ArtistResponse deleteArtist(Integer id);
 
     boolean isArtistIdExist(Integer id);
 

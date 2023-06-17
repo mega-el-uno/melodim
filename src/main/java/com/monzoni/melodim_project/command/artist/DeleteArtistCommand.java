@@ -3,7 +3,6 @@ package com.monzoni.melodim_project.command.artist;
 import com.monzoni.melodim_project.command.spec.PostExecutorCommand;
 import com.monzoni.melodim_project.command.spec.PreExecutorCommand;
 import com.monzoni.melodim_project.command.spec.SafeAbstractCommand;
-import com.monzoni.melodim_project.dto.request.artist.DeleteArtistRequest;
 import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.service.ArtistService;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class DeleteArtistCommand
-        extends SafeAbstractCommand<DeleteArtistRequest, ArtistResponse>
+        extends SafeAbstractCommand<Integer, ArtistResponse>
         implements PreExecutorCommand, PostExecutorCommand {
 
     private final ArtistService artistService;
@@ -24,8 +23,8 @@ public class DeleteArtistCommand
     @Override
     public void preExecute() {
         log.info("DeleteArtistCommand PreExecute");
-        if (!artistService.isArtistIdExist(this.input.getId())) {
-            throw new ProcessErrorException("The Artist with id: " + this.input.getId() + " does not exists");
+        if (!artistService.isArtistIdExist(this.input)) {
+            throw new ProcessErrorException("The Artist with id: " + this.input + " does not exists");
         }
     }
 

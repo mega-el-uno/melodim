@@ -1,7 +1,6 @@
 package com.monzoni.melodim_project.service;
 
 import com.monzoni.melodim_project.dto.request.artist.CreateArtistRequest;
-import com.monzoni.melodim_project.dto.request.artist.DeleteArtistRequest;
 import com.monzoni.melodim_project.dto.request.artist.UpdateArtistRequest;
 import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
@@ -55,9 +54,9 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public ArtistResponse deleteArtist(DeleteArtistRequest deleteArtistRequest) {
-        Optional<ArtistEntity> artistEntityDeleted = artistRepository.findById(deleteArtistRequest.getId());
-        artistRepository.deleteById(deleteArtistRequest.getId());
+    public ArtistResponse deleteArtist(Integer id){
+        Optional<ArtistEntity> artistEntityDeleted = artistRepository.findById(id);
+        artistRepository.deleteById(id);
         return artistMapper.mapperToArtistResponse(artistEntityDeleted.get());
     }
 

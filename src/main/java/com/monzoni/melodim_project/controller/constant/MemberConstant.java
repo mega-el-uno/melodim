@@ -8,12 +8,12 @@ public class MemberConstant {
 
     public static final String TAG_DESCRIPTION = "Operations for members";
 
-    public static final String TAG_GET_MEMBER = "Get employee";
+    public static final String TAG_GET_MEMBER = "Get member";
 
-    public static final String TAG_CREATE_MEMBER = "Create employee";
+    public static final String TAG_CREATE_MEMBER = "Create member";
 
-    public static final String TAG_UPDATE_MEMBER = "Update employee";
+    public static final String TAG_UPDATE_MEMBER = "Update member";
 
-    public static final String TAG_DELETE_MEMBER = "Delete employee";
+    public static final String TAG_DELETE_MEMBER = "Delete member";
 
 }
