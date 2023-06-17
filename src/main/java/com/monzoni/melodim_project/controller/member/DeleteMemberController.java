@@ -1,0 +1,33 @@
+package com.monzoni.melodim_project.controller.member;
+
+import com.monzoni.melodim_project.command.member.DeleteMemberCommand;
+import com.monzoni.melodim_project.command.spec.SafeCommandExecutor;
+import com.monzoni.melodim_project.controller.constant.MemberConstant;
+import com.monzoni.melodim_project.dto.request.member.DeleteMemberRequest;
+import com.monzoni.melodim_project.dto.response.member.DeleteMemberResponse;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+
+@Api(tags = MemberConstant.TAG_NAME, description = MemberConstant.TAG_DESCRIPTION)
+@RequestMapping(name = MemberConstant.BASE_PATH)
+@RestController
+@RequiredArgsConstructor
+public class DeleteMemberController {
+    private final DeleteMemberCommand deleteMemberCommand;
+
+    @ApiOperation(value = MemberConstant.TAG_DELETE_MEMBER)
+    @DeleteMapping(value = "/DeleteMember", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    DeleteMemberResponse deleteMember(@Valid @RequestBody DeleteMemberRequest deleteMemberRequest){
+        deleteMemberCommand.setInput(deleteMemberRequest);
+        (new SafeCommandExecutor<DeleteMemberRequest, DeleteMemberResponse>()).safeExecution(deleteMemberCommand);
+        return deleteMemberCommand.getOutput();
+    }
+}
