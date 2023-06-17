@@ -3,7 +3,8 @@ package com.monzoni.melodim_project.mapper;
 
 import com.monzoni.melodim_project.dto.request.artist.CreateArtistRequest;
 import com.monzoni.melodim_project.dto.request.artist.UpdateArtistRequest;
-import com.monzoni.melodim_project.dto.response.artist.*;
+import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
+import com.monzoni.melodim_project.dto.response.artist.GetAllArtistListResponse;
 import com.monzoni.melodim_project.model.entity.ArtistEntity;
 import com.monzoni.melodim_project.util.constant.ResponseConstant.SuccessResponse;
 import org.mapstruct.Mapper;
@@ -24,23 +25,6 @@ public interface ArtistMapper {
 
     ArtistEntity mapperToArtistEntity(CreateArtistRequest source);
 
-    default CreateArtistResponse mapperToCreateArtistResponse(ArtistResponse artistResponse) {
-        return toCreateArtistResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, artistResponse);
-    }
-
-    CreateArtistResponse toCreateArtistResponse(String code, String message, ArtistResponse artistResponse);
-
     void mapperToArtistEntity(UpdateArtistRequest updateArtistRequest, @MappingTarget ArtistEntity artistEntity);
 
-    default UpdateArtistResponse mapperToUpdateArtistResponse(ArtistResponse artistResponse) {
-        return toUpdateArtistResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, artistResponse);
-    }
-
-    UpdateArtistResponse toUpdateArtistResponse(String code, String message, ArtistResponse artistResponse);
-
-    default DeleteArtistResponse mapperToDeleteArtistResponse(ArtistResponse artistResponse) {
-        return toDeleteArtistResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, artistResponse);
-    }
-
-    DeleteArtistResponse toDeleteArtistResponse(String code, String message, ArtistResponse artistResponse);
 }

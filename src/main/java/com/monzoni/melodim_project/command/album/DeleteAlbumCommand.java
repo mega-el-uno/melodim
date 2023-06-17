@@ -7,20 +7,18 @@ import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.service.AlbumService;
 import com.monzoni.melodim_project.util.function.Utils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class DeleteAlbumCommand
         extends SafeAbstractCommand<Integer, AlbumResponse>
         implements PreExecutorCommand, PostExecutorCommand {
 
     private final AlbumService albumService;
-
-    public DeleteAlbumCommand(AlbumService albumService) {
-        this.albumService = albumService;
-    }
 
     @Override
     public void preExecute() {

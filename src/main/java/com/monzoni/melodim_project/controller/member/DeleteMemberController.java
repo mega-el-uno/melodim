@@ -9,7 +9,6 @@ import com.monzoni.melodim_project.dto.response.member.MemberResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +23,8 @@ import javax.validation.Valid;
 public class DeleteMemberController {
     private final DeleteMemberCommand deleteMemberCommand;
 
+    @DeleteMapping()
     @ApiOperation(value = MemberConstant.TAG_DELETE_MEMBER)
-    @DeleteMapping(value = "/DeleteMember", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     CommonResponse<MemberResponse> deleteMember(@Valid @RequestBody DeleteMemberRequest deleteMemberRequest) {
         deleteMemberCommand.setInput(deleteMemberRequest);
         (new SafeCommandExecutor<DeleteMemberRequest, MemberResponse>()).safeExecution(deleteMemberCommand);

@@ -2,7 +2,8 @@ package com.monzoni.melodim_project.mapper;
 
 import com.monzoni.melodim_project.dto.request.album.CreateAlbumRequest;
 import com.monzoni.melodim_project.dto.request.album.UpdateAlbumRequest;
-import com.monzoni.melodim_project.dto.response.album.*;
+import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
+import com.monzoni.melodim_project.dto.response.album.GetAllAlbumListResponse;
 import com.monzoni.melodim_project.model.entity.AlbumEntity;
 import com.monzoni.melodim_project.util.constant.ResponseConstant.SuccessResponse;
 import org.mapstruct.Mapper;
@@ -24,24 +25,4 @@ public interface AlbumMapper {
     }
 
     GetAllAlbumListResponse toGetAllAlbumListResponse(String code, String message, List<AlbumResponse> albumResponseList);
-
-
-    default CreateAlbumResponse mapperToCreateAlbumResponse(AlbumResponse albumResponse) {
-        return toCreateAlbumResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, albumResponse);
-    }
-
-    CreateAlbumResponse toCreateAlbumResponse(String code, String message, AlbumResponse albumResponse);
-
-    default UpdateAlbumResponse mapperToUpdateAlbumResponse(AlbumResponse albumResponse) {
-        return toUpdateAlbumResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, albumResponse);
-    }
-
-    UpdateAlbumResponse toUpdateAlbumResponse(String code, String message, AlbumResponse albumResponse);
-
-    default DeleteAlbumResponse mapperToDeleteAlbumResponse(AlbumResponse albumResponse) {
-        return toDeleteAlbumResponse(SuccessResponse.CODE, SuccessResponse.MESSAGE, albumResponse);
-    }
-
-    DeleteAlbumResponse toDeleteAlbumResponse(String code, String message, AlbumResponse albumResponse);
-
 }
