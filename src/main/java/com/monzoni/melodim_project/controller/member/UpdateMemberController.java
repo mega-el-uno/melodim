@@ -6,7 +6,6 @@ import com.monzoni.melodim_project.controller.constant.MemberConstant;
 import com.monzoni.melodim_project.dto.request.member.UpdateMemberRequest;
 import com.monzoni.melodim_project.dto.response.CommonResponse;
 import com.monzoni.melodim_project.dto.response.member.MemberResponse;
-import com.monzoni.melodim_project.dto.response.member.UpdateMemberResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +26,7 @@ public class UpdateMemberController {
 
     @ApiOperation(value = MemberConstant.TAG_UPDATE_MEMBER)
     @PutMapping(value = "/UpdateMember", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    CommonResponse<MemberResponse> updateMember(@Valid @RequestBody UpdateMemberRequest updateMemberRequest){
+    CommonResponse<MemberResponse> updateMember(@Valid @RequestBody UpdateMemberRequest updateMemberRequest) {
         updateMemberCommand.setInput(updateMemberRequest);
         (new SafeCommandExecutor<UpdateMemberRequest, MemberResponse>()).safeExecution(updateMemberCommand);
         return new CommonResponse<>(updateMemberCommand.getOutput());

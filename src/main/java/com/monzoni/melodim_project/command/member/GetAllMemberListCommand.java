@@ -24,6 +24,7 @@ public class GetAllMemberListCommand
 
     private final MemberService memberService;
     private final MemberMapper memberMapper;
+
     @Autowired
     public GetAllMemberListCommand(MemberService memberService, MemberMapper memberMapper) {
         this.memberService = memberService;
@@ -45,7 +46,7 @@ public class GetAllMemberListCommand
     @Override
     public void postExecute() {
         log.info("GetAllMemberListCommand - PostExecute");
-        if(Utils.isNull(this.output.getMemberResponseList())){
+        if (Utils.isNull(this.output.getMemberResponseList())) {
             this.output.setMemberResponseList(Collections.emptyList());
         }
     }

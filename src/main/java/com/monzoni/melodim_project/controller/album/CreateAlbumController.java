@@ -6,12 +6,10 @@ import com.monzoni.melodim_project.controller.constant.AlbumConstant;
 import com.monzoni.melodim_project.dto.request.album.CreateAlbumRequest;
 import com.monzoni.melodim_project.dto.response.CommonResponse;
 import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
-import com.monzoni.melodim_project.dto.response.album.CreateAlbumResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

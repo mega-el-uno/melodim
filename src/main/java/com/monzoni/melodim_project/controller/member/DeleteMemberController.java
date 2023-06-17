@@ -5,7 +5,6 @@ import com.monzoni.melodim_project.command.spec.SafeCommandExecutor;
 import com.monzoni.melodim_project.controller.constant.MemberConstant;
 import com.monzoni.melodim_project.dto.request.member.DeleteMemberRequest;
 import com.monzoni.melodim_project.dto.response.CommonResponse;
-import com.monzoni.melodim_project.dto.response.member.DeleteMemberResponse;
 import com.monzoni.melodim_project.dto.response.member.MemberResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,7 +26,7 @@ public class DeleteMemberController {
 
     @ApiOperation(value = MemberConstant.TAG_DELETE_MEMBER)
     @DeleteMapping(value = "/DeleteMember", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    CommonResponse<MemberResponse> deleteMember(@Valid @RequestBody DeleteMemberRequest deleteMemberRequest){
+    CommonResponse<MemberResponse> deleteMember(@Valid @RequestBody DeleteMemberRequest deleteMemberRequest) {
         deleteMemberCommand.setInput(deleteMemberRequest);
         (new SafeCommandExecutor<DeleteMemberRequest, MemberResponse>()).safeExecution(deleteMemberCommand);
         return new CommonResponse<>(deleteMemberCommand.getOutput());

@@ -5,15 +5,12 @@ import com.monzoni.melodim_project.command.spec.PreExecutorCommand;
 import com.monzoni.melodim_project.command.spec.SafeAbstractCommand;
 import com.monzoni.melodim_project.dto.request.artist.CreateArtistRequest;
 import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
-import com.monzoni.melodim_project.dto.response.artist.CreateArtistResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
-import com.monzoni.melodim_project.mapper.ArtistMapper;
 import com.monzoni.melodim_project.service.ArtistService;
 import com.monzoni.melodim_project.util.constant.ArtistType;
 import com.monzoni.melodim_project.util.function.Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -46,7 +43,7 @@ public class CreateArtistCommand
     @Override
     protected void execute() {
         log.info("CreateArtistCommand Execute");
-       this.output = artistService.saveNewArtist(this.input);
+        this.output = artistService.saveNewArtist(this.input);
     }
 
     @Override

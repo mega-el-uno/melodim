@@ -22,7 +22,7 @@ public class GetMemberController {
 
     @ApiOperation(value = MemberConstant.TAG_GET_MEMBER)
     @GetMapping(value = "/GetAllMemberList", produces = MediaType.APPLICATION_JSON_VALUE)
-    GetAllMemberListResponse getAllMemberList(){
+    GetAllMemberListResponse getAllMemberList() {
         (new SafeCommandExecutor<DefaultRequest, GetAllMemberListResponse>()).safeExecution(getAllMemberListCommand);
         return getAllMemberListCommand.getOutput();
     }
