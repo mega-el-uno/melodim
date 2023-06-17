@@ -18,4 +18,5 @@ public interface MemberService {
 
     Boolean existAlbumById(Integer id);
 
+    MemberResponse getMemberById(Integer id);
 }

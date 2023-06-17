@@ -8,12 +8,12 @@ public class ArtistConstant {
 
     public static final String TAG_DESCRIPTION = "Operations for artists";
 
-    public static final String TAG_GET_ARTIST = "Create artist";
+    public static final String TAG_GET_ARTIST = "Get artist";
 
     public static final String TAG_CREATE_ARTIST = "Create artist";
 
-    public static final String TAG_UPDATE_ARTIST = "Create artist";
+    public static final String TAG_UPDATE_ARTIST = "Update artist";
 
-    public static final String TAG_DELETE_ARTIST = "Create artist";
+    public static final String TAG_DELETE_ARTIST = "Delete artist";
 
 }

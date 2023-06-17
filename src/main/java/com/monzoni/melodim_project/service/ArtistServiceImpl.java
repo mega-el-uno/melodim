@@ -66,4 +66,14 @@ public class ArtistServiceImpl implements ArtistService {
         Optional<ArtistEntity> artistEntity = artistRepository.findById(id);
         return artistEntity.isPresent();
     }
+
+    @Override
+    public ArtistResponse getArtistById(Integer id) {
+        Optional<ArtistEntity> artistEntity = artistRepository.findById(id);
+        if (artistEntity.isEmpty()){
+            throw new ProcessErrorException("The artist with id"+ id +" does not exist");
+        }
+
+        return artistMapper.mapperToArtistResponse(artistEntity.get());
+    }
 }

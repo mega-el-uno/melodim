@@ -18,4 +18,6 @@ public interface ArtistService {
     ArtistResponse deleteArtist(DeleteArtistRequest deleteArtistRequest);
 
     boolean isArtistIdExist(Integer id);
+
+    ArtistResponse getArtistById(Integer id);
 }
