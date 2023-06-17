@@ -7,7 +7,7 @@ import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.mapper.ArtistMapper;
 import com.monzoni.melodim_project.repository.ArtistRepository;
-import com.monzoni.melodim_project.repository.entity.ArtistEntity;
+import com.monzoni.melodim_project.model.entity.ArtistEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

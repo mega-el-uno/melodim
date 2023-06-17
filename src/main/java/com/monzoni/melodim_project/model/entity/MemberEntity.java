@@ -1,4 +1,4 @@
-package com.monzoni.melodim_project.repository.entity;
+package com.monzoni.melodim_project.model.entity;
 
 import lombok.Data;
 

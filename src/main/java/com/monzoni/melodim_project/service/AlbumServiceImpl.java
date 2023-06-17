@@ -7,7 +7,7 @@ import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.mapper.AlbumMapper;
 import com.monzoni.melodim_project.repository.AlbumRepository;
-import com.monzoni.melodim_project.repository.entity.AlbumEntity;
+import com.monzoni.melodim_project.model.entity.AlbumEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

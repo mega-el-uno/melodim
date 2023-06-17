@@ -3,7 +3,7 @@ package com.monzoni.melodim_project.mapper;
 import com.monzoni.melodim_project.dto.request.album.CreateAlbumRequest;
 import com.monzoni.melodim_project.dto.request.album.UpdateAlbumRequest;
 import com.monzoni.melodim_project.dto.response.album.*;
-import com.monzoni.melodim_project.repository.entity.AlbumEntity;
+import com.monzoni.melodim_project.model.entity.AlbumEntity;
 import com.monzoni.melodim_project.util.constant.ResponseConstant.SuccessResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
