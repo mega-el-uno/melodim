@@ -6,25 +6,22 @@ import com.monzoni.melodim_project.command.spec.SafeAbstractCommand;
 import com.monzoni.melodim_project.dto.request.album.UpdateAlbumRequest;
 import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
 import com.monzoni.melodim_project.dto.response.album.UpdateAlbumResponse;
+import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.mapper.AlbumMapper;
 import com.monzoni.melodim_project.service.AlbumService;
 import com.monzoni.melodim_project.util.function.Utils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UpdateAlbumCommand
-        extends SafeAbstractCommand<UpdateAlbumRequest, UpdateAlbumResponse>
+        extends SafeAbstractCommand<UpdateAlbumRequest, AlbumResponse>
         implements PreExecutorCommand, PostExecutorCommand {
 
     private final AlbumService albumService;
-    private final AlbumMapper albumMapper;
-
-    public UpdateAlbumCommand(AlbumService albumService, AlbumMapper albumMapper) {
-        this.albumService = albumService;
-        this.albumMapper = albumMapper;
-    }
 
     @Override
     public void preExecute() {
@@ -34,15 +31,14 @@ public class UpdateAlbumCommand
     @Override
     protected void execute() {
         log.info("UpdateAlbumCommand - Execute");
-        AlbumResponse albumResponse = albumService.UpdateAlbum(this.input);
-        this.output = albumMapper.mapperToUpdateAlbumResponse(albumResponse);
+        this.output = albumService.UpdateAlbum(this.input);
     }
 
     @Override
     public void postExecute() {
         log.info("UpdateAlbumCommand - PostExecute");
-        if (Utils.isNull(this.output.getAlbumResponse())) {
-            this.output.setAlbumResponse(new AlbumResponse());
+        if (Utils.isNull(this.output)) {
+            throw new ProcessErrorException("Failed to update album");
         }
     }
 

@@ -14,7 +14,7 @@ public interface AlbumService {
 
     AlbumResponse UpdateAlbum(UpdateAlbumRequest updateAlbumRequest);
 
-    AlbumResponse DeleteAlbum(DeleteAlbumRequest deleteAlbumRequest);
+    AlbumResponse DeleteAlbum(Integer albumId);
 
     Boolean existAlbumById(Integer id);
 }

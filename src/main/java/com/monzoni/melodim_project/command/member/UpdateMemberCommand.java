@@ -11,24 +11,19 @@ import com.monzoni.melodim_project.mapper.MemberMapper;
 import com.monzoni.melodim_project.service.ArtistService;
 import com.monzoni.melodim_project.service.MemberService;
 import com.monzoni.melodim_project.util.function.Utils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UpdateMemberCommand
-        extends SafeAbstractCommand<UpdateMemberRequest, UpdateMemberResponse>
+        extends SafeAbstractCommand<UpdateMemberRequest, MemberResponse>
         implements PreExecutorCommand, PostExecutorCommand {
     private final MemberService memberService;
     private final ArtistService artistService;
-    private final MemberMapper memberMapper;
-    @Autowired
-    public UpdateMemberCommand(MemberService memberService, ArtistService artistService, MemberMapper memberMapper) {
-        this.memberService = memberService;
-        this.artistService = artistService;
-        this.memberMapper = memberMapper;
-    }
 
     @Override
     public void preExecute() {
@@ -43,15 +38,14 @@ public class UpdateMemberCommand
     @Override
     protected void execute() {
         log.info("GetAllMemberListCommand - Execute");
-        MemberResponse memberResponse = memberService.updateMember(this.input);
-        this.output = memberMapper.mapperToUpdateMemberListResponse(memberResponse);
+        this.output = memberService.updateMember(this.input);
     }
 
     @Override
     public void postExecute() {
         log.info("GetAllMemberListCommand - PostExecute");
-        if(Utils.isNull(this.output.getMemberResponse())){
-            this.output.setMemberResponse(new MemberResponse());
+        if(Utils.isNull(this.output)){
+            throw new ProcessErrorException("Filed to update member");
         }
     }
 }

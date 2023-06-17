@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = ArtistConstant.TAG_NAME, description = ArtistConstant.TAG_DESCRIPTION)
-@RequestMapping(name = ArtistConstant.BASE_PATH)
+@RequestMapping(value = ArtistConstant.BASE_PATH)
 @RestController
 @RequiredArgsConstructor
 public class GetArtistController {

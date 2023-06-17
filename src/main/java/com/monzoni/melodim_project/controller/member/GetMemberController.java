@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = MemberConstant.TAG_NAME, description = MemberConstant.TAG_DESCRIPTION)
-@RequestMapping(name = MemberConstant.BASE_PATH)
+@RequestMapping(value = MemberConstant.BASE_PATH)
 @RestController
 @RequiredArgsConstructor
 public class GetMemberController {

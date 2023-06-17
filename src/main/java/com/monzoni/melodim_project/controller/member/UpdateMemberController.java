@@ -4,6 +4,8 @@ import com.monzoni.melodim_project.command.member.UpdateMemberCommand;
 import com.monzoni.melodim_project.command.spec.SafeCommandExecutor;
 import com.monzoni.melodim_project.controller.constant.MemberConstant;
 import com.monzoni.melodim_project.dto.request.member.UpdateMemberRequest;
+import com.monzoni.melodim_project.dto.response.CommonResponse;
+import com.monzoni.melodim_project.dto.response.member.MemberResponse;
 import com.monzoni.melodim_project.dto.response.member.UpdateMemberResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @Api(tags = MemberConstant.TAG_NAME, description = MemberConstant.TAG_DESCRIPTION)
-@RequestMapping(name = MemberConstant.BASE_PATH)
+@RequestMapping(value = MemberConstant.BASE_PATH)
 @RestController
 @RequiredArgsConstructor
 public class UpdateMemberController {
@@ -25,9 +27,9 @@ public class UpdateMemberController {
 
     @ApiOperation(value = MemberConstant.TAG_UPDATE_MEMBER)
     @PutMapping(value = "/UpdateMember", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    UpdateMemberResponse updateMember(@Valid @RequestBody UpdateMemberRequest updateMemberRequest){
+    CommonResponse<MemberResponse> updateMember(@Valid @RequestBody UpdateMemberRequest updateMemberRequest){
         updateMemberCommand.setInput(updateMemberRequest);
-        (new SafeCommandExecutor<UpdateMemberRequest, UpdateMemberResponse>()).safeExecution(updateMemberCommand);
-        return updateMemberCommand.getOutput();
+        (new SafeCommandExecutor<UpdateMemberRequest, MemberResponse>()).safeExecution(updateMemberCommand);
+        return new CommonResponse<>(updateMemberCommand.getOutput());
     }
 }

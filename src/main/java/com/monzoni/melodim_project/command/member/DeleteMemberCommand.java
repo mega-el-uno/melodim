@@ -9,25 +9,20 @@ import com.monzoni.melodim_project.dto.response.member.MemberResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.mapper.MemberMapper;
 import com.monzoni.melodim_project.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class DeleteMemberCommand
-        extends SafeAbstractCommand<DeleteMemberRequest, DeleteMemberResponse>
+        extends SafeAbstractCommand<DeleteMemberRequest, MemberResponse>
         implements PreExecutorCommand, PostExecutorCommand {
 
     private final MemberService memberService;
-    private final MemberMapper memberMapper;
 
-    @Autowired
-    public DeleteMemberCommand(MemberService memberService, MemberMapper memberMapper) {
-        this.memberService = memberService;
-        this.memberMapper = memberMapper;
-
-    }
     @Override
     public void preExecute() {
         log.info("DeleteMemberCommand PreExecute");
@@ -39,8 +34,7 @@ public class DeleteMemberCommand
     @Override
     protected void execute() {
         log.info("DeleteMemberCommand Execute");
-        MemberResponse memberResponse = memberService.deleteMember(this.input);
-        this.output = memberMapper.mapperToDeleteMemberListResponse(memberResponse);
+        this.output = memberService.deleteMember(this.input);
     }
 
     @Override

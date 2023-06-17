@@ -16,37 +16,35 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class DeleteAlbumCommand
-        extends SafeAbstractCommand<DeleteAlbumRequest, DeleteAlbumResponse>
+        extends SafeAbstractCommand<Integer, AlbumResponse>
         implements PreExecutorCommand, PostExecutorCommand {
 
     private final AlbumService albumService;
-    private final AlbumMapper albumMapper;
 
-    public DeleteAlbumCommand(AlbumService albumService, AlbumMapper albumMapper) {
+    public DeleteAlbumCommand(AlbumService albumService) {
         this.albumService = albumService;
-        this.albumMapper = albumMapper;
     }
 
     @Override
     public void preExecute() {
         log.info("DeleteAlbumCommand PreExecute");
-        if (!albumService.existAlbumById(this.input.getId())) {
-            throw new ProcessErrorException("The album with ID: " + this.input.getId() + " does not exist");
+        if (!albumService.existAlbumById(this.input)) {
+            throw new ProcessErrorException("The album with ID: " + this.input + " does not exist");
         }
     }
 
     @Override
     protected void execute() {
         log.info("DeleteAlbumCommand Execute");
-        AlbumResponse albumResponse = albumService.DeleteAlbum(this.input);
-        this.output = albumMapper.mapperToDeleteAlbumResponse(albumResponse);
+        this.output = albumService.DeleteAlbum(this.input);
+
     }
 
     @Override
     public void postExecute() {
         log.info("DeleteAlbumCommand PostExecute");
-        if (Utils.isNull(this.output.getAlbumResponse())) {
-            this.output.setAlbumResponse(new AlbumResponse());
+        if (Utils.isNull(this.output)) {
+            throw new ProcessErrorException("Failed to delete album");
         }
     }
 

@@ -10,25 +10,20 @@ import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.mapper.MemberMapper;
 import com.monzoni.melodim_project.service.ArtistService;
 import com.monzoni.melodim_project.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class CreateMemberCommand
-        extends SafeAbstractCommand<CreateMemberRequest, CreateMemberResponse>
+        extends SafeAbstractCommand<CreateMemberRequest, MemberResponse>
         implements PreExecutorCommand, PostExecutorCommand {
 
     private final MemberService memberService;
     private final ArtistService artistService;
-    private final MemberMapper memberMapper;
-    @Autowired
-    public CreateMemberCommand(MemberService memberService, ArtistService artistService, MemberMapper memberMapper) {
-        this.memberService = memberService;
-        this.artistService = artistService;
-        this.memberMapper = memberMapper;
-    }
 
 
     @Override
@@ -42,8 +37,7 @@ public class CreateMemberCommand
     @Override
     protected void execute() {
         log.info("CreateMemberCommand - Execute");
-        MemberResponse newMemberAdded = memberService.saveNewMember(this.input);
-        this.output = memberMapper.mapperToCreateMemberListResponse(newMemberAdded);
+        this.output = memberService.saveNewMember(this.input);;
     }
 
     @Override

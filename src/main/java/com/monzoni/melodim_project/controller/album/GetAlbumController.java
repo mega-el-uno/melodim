@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = AlbumConstant.TAG_NAME, description = AlbumConstant.TAG_DESCRIPTION)
-@RequestMapping(name = AlbumConstant.BASE_PATH)
+@RequestMapping(value = AlbumConstant.BASE_PATH)
 @RestController
 @RequiredArgsConstructor
 public class GetAlbumController {

@@ -4,6 +4,8 @@ import com.monzoni.melodim_project.command.artist.CreateArtistCommand;
 import com.monzoni.melodim_project.command.spec.SafeCommandExecutor;
 import com.monzoni.melodim_project.controller.constant.ArtistConstant;
 import com.monzoni.melodim_project.dto.request.artist.CreateArtistRequest;
+import com.monzoni.melodim_project.dto.response.CommonResponse;
+import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
 import com.monzoni.melodim_project.dto.response.artist.CreateArtistResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,18 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @Api(tags = ArtistConstant.TAG_NAME, description = ArtistConstant.TAG_DESCRIPTION)
-@RequestMapping(name = ArtistConstant.BASE_PATH)
+@RequestMapping(value = ArtistConstant.BASE_PATH)
 @RestController
 @RequiredArgsConstructor
 public class CreateArtistController {
 
     private CreateArtistCommand createArtistCommand;
 
+    @PostMapping()
     @ApiOperation(value = ArtistConstant.TAG_CREATE_ARTIST)
-    @PostMapping(value = "/CreateArtist", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public CreateArtistResponse createArtist(@Valid @RequestBody CreateArtistRequest request) {
+    public CommonResponse<ArtistResponse> createArtist(@Valid @RequestBody CreateArtistRequest request) {
         createArtistCommand.setInput(request);
-        (new SafeCommandExecutor<CreateArtistRequest, CreateArtistResponse>()).safeExecution(createArtistCommand);
-        return createArtistCommand.getOutput();
+        (new SafeCommandExecutor<CreateArtistRequest, ArtistResponse>()).safeExecution(createArtistCommand);
+        return new CommonResponse<>(createArtistCommand.getOutput());
     }
 }

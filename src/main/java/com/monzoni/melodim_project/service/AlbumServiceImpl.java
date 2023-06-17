@@ -55,9 +55,9 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public AlbumResponse DeleteAlbum(DeleteAlbumRequest deleteAlbumRequest) {
-        Optional<AlbumEntity> albumEntity = albumRepository.findById(deleteAlbumRequest.getId());
-        albumRepository.deleteById(deleteAlbumRequest.getId());
+    public AlbumResponse DeleteAlbum(Integer albumId) {
+        Optional<AlbumEntity> albumEntity = albumRepository.findById(albumId);
+        albumRepository.deleteById(albumId);
         return albumMapper.mapperToAlbumResponse(albumEntity.get());
     }
 

@@ -10,25 +10,19 @@ import com.monzoni.melodim_project.exception.ProcessErrorException;
 import com.monzoni.melodim_project.mapper.ArtistMapper;
 import com.monzoni.melodim_project.service.ArtistService;
 import com.monzoni.melodim_project.util.function.Utils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class DeleteArtistCommand
-        extends SafeAbstractCommand<DeleteArtistRequest, DeleteArtistResponse>
+        extends SafeAbstractCommand<DeleteArtistRequest, ArtistResponse>
         implements PreExecutorCommand, PostExecutorCommand {
 
     private final ArtistService artistService;
-    private final ArtistMapper artistMapper;
-
-    @Autowired
-    public DeleteArtistCommand(ArtistService artistService, ArtistMapper artistMapper) {
-        this.artistService = artistService;
-        this.artistMapper = artistMapper;
-    }
-
     @Override
     public void preExecute() {
         log.info("DeleteArtistCommand PreExecute");
@@ -40,15 +34,14 @@ public class DeleteArtistCommand
     @Override
     protected void execute() {
         log.info("DeleteArtistCommand Execute");
-        ArtistResponse artistResponse = artistService.deleteArtist(this.input);
-        this.output = artistMapper.mapperToDeleteArtistResponse(artistResponse);
+        this.output = artistService.deleteArtist(this.input);
     }
 
     @Override
     public void postExecute() {
         log.info("DeleteArtistCommand PostExecute");
-        if (Utils.isNull(this.output.getArtistResponse())) {
-            this.output.setArtistResponse(new ArtistResponse());
+        if (Utils.isNull(this.output)) {
+            throw new ProcessErrorException("Filed to delete artist");
         }
     }
 
