@@ -19,10 +19,11 @@ public class GetArtistByIdCommand
         implements PreExecutorCommand, PostExecutorCommand {
 
     private final ArtistService artistService;
+
     @Override
     public void preExecute() {
         log.info("GetArtistByIdCommand PreExecute");
-        if(Utils.isNull(this.input)){
+        if (Utils.isNull(this.input)) {
             throw new ProcessErrorException("The id cannot be null");
         }
     }

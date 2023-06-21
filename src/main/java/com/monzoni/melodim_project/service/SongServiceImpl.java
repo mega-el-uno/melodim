@@ -6,26 +6,31 @@ import com.monzoni.melodim_project.dto.request.song.UpdateSongRequest;
 import com.monzoni.melodim_project.dto.response.PaginationResponse;
 import com.monzoni.melodim_project.dto.response.song.SongResponse;
 import com.monzoni.melodim_project.exception.ProcessErrorException;
+import com.monzoni.melodim_project.mapper.BasePaginationMapper;
 import com.monzoni.melodim_project.mapper.SongMapper;
 import com.monzoni.melodim_project.model.entity.*;
 import com.monzoni.melodim_project.repository.AlbumRepository;
 import com.monzoni.melodim_project.repository.ArtistRepository;
 import com.monzoni.melodim_project.repository.GenreRepository;
 import com.monzoni.melodim_project.repository.SongRepository;
+import com.monzoni.melodim_project.util.function.Specifications;
 import com.monzoni.melodim_project.util.function.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class SongServiceImpl implements SongService{
+public class SongServiceImpl implements SongService {
 
     private final SongRepository songRepository;
 
@@ -94,8 +99,8 @@ public class SongServiceImpl implements SongService{
     @Override
     public SongResponse getSongById(Integer id) {
         Optional<SongEntity> songEntity = songRepository.findById(id);
-        if (songEntity.isEmpty()){
-            throw new ProcessErrorException("The song with id: "+ id +" does not exist");
+        if (songEntity.isEmpty()) {
+            throw new ProcessErrorException("The song with id: " + id + " does not exist");
         }
 
         return songMapper.mapperToSongResponse(songEntity.get());
@@ -103,18 +108,54 @@ public class SongServiceImpl implements SongService{
 
     @Override
     public PaginationResponse<SongResponse> getSongByPage(GetSongByPageRequest request) {
-        Pageable pageRequest = PageRequest.of(request.getPage() - 1, request.getSize());
-        Page<SongEntity> songEntityPage = songRepository.findAll(pageRequest);
+        PaginationResponse<SongResponse> response = new PaginationResponse<>();
+
+        Sort sort = Specifications.buildSorting(request.getOrder(), request.getDirection());
+        PageRequest pageRequest = PageRequest.of(request.getPage() - 1, request.getSize(), sort);
+
+        Page<SongEntity> songEntityPage = songRepository.findAll(buildSpecification(request), pageRequest);
         List<SongResponse> songResponseList = songEntityPage.get()
                 .map(songMapper::mapperToSongResponse)
                 .collect(Collectors.toList());
 
-        PaginationResponse<SongResponse> response = new PaginationResponse<>();
         response.setItems(songResponseList);
-        response.setPage(request.getPage());
-        response.setSize(request.getSize());
-        response.setTotalPage(songEntityPage.getTotalPages());
-        response.setTotalItems(songEntityPage.getTotalElements());
-        return response;
+        return BasePaginationMapper.setPageMetadata(response, songEntityPage);
     }
+
+    private Specification<SongEntity> buildSpecification(GetSongByPageRequest request) {
+        return (root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+
+            if (!Utils.isNull(request.getArtist())) {
+                String artistToSearch = "%" + request.getArtist() + "%";
+                predicates.add(builder
+                        .like(root.get(SongEntity_.artist).get(ArtistEntity_.name), artistToSearch));
+            }
+
+            if (!Utils.isNull(request.getAlbum())) {
+                String albumToSearch = "%" + request.getAlbum() + "%";
+                predicates.add(builder
+                        .like(root.get(SongEntity_.album).get(AlbumEntity_.name), albumToSearch));
+            }
+
+            if (!Utils.isNull(request.getGenre())) {
+                String genreToSearch = "%" + request.getGenre() + "%";
+                predicates.add(builder
+                        .like(root.get(SongEntity_.genre).get(GenreEntity_.name), genreToSearch));
+            }
+
+            if (!Utils.isNull(request.getTitle())) {
+                String[] words = request.getTitle().split(" ");
+                for (String word : words) {
+                    word = "%" + word + "%";
+                    predicates.add(builder.or(
+                            builder.like(root.get(SongEntity_.title), word)
+                    ));
+                }
+            }
+
+            return builder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
 }

@@ -3,9 +3,6 @@ package com.monzoni.melodim_project.dto.response.song;
 import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
 import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
 import com.monzoni.melodim_project.dto.response.genre.GenreResponse;
-import com.monzoni.melodim_project.model.entity.AlbumEntity;
-import com.monzoni.melodim_project.model.entity.ArtistEntity;
-import com.monzoni.melodim_project.model.entity.GenreEntity;
 import lombok.Getter;
 import lombok.Setter;
 

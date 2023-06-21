@@ -26,7 +26,7 @@ public class UpdateSongController {
 
     @PutMapping()
     @ApiOperation(value = SongConstant.TAG_UPDATE_SONG)
-    CommonResponse<SongResponse> updateSong(@Valid @RequestBody UpdateSongRequest request){
+    CommonResponse<SongResponse> updateSong(@Valid @RequestBody UpdateSongRequest request) {
         updateSongCommand.setInput(request);
         (new SafeCommandExecutor<UpdateSongRequest, SongResponse>()).safeExecution(updateSongCommand);
         return new CommonResponse<>(updateSongCommand.getOutput());

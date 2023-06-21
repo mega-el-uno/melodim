@@ -23,10 +23,11 @@ public class GetAlbumByIdCommand
     @Override
     public void preExecute() {
         log.info("GetAlbumByIdCommand PreExecute");
-        if (Utils.isNull(this.input)){
+        if (Utils.isNull(this.input)) {
             throw new ProcessErrorException("The id cannot be null");
         }
     }
+
     @Override
     protected void execute() {
         log.info("GetAlbumByIdCommand Execute");

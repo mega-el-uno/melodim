@@ -79,7 +79,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberResponse getMemberById(Integer id) {
         Optional<MemberEntity> memberEntity = memberRepository.findById(id);
-        if (memberEntity.isEmpty()){
+        if (memberEntity.isEmpty()) {
             throw new ProcessErrorException("The member eith id: " + id + " does not exist");
         }
 

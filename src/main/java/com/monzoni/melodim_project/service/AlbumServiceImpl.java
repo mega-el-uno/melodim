@@ -69,8 +69,8 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public AlbumResponse getAlbumById(Integer id) {
         Optional<AlbumEntity> albumEntity = albumRepository.findById(id);
-        if(albumEntity.isEmpty()){
-            throw new ProcessErrorException("The album with id: "+ id +" does not exist");
+        if (albumEntity.isEmpty()) {
+            throw new ProcessErrorException("The album with id: " + id + " does not exist");
         }
         return albumMapper.mapperToAlbumResponse(albumEntity.get());
     }

@@ -54,7 +54,7 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public ArtistResponse deleteArtist(Integer id){
+    public ArtistResponse deleteArtist(Integer id) {
         Optional<ArtistEntity> artistEntityDeleted = artistRepository.findById(id);
         artistRepository.deleteById(id);
         return artistMapper.mapperToArtistResponse(artistEntityDeleted.get());
@@ -69,8 +69,8 @@ public class ArtistServiceImpl implements ArtistService {
     @Override
     public ArtistResponse getArtistById(Integer id) {
         Optional<ArtistEntity> artistEntity = artistRepository.findById(id);
-        if (artistEntity.isEmpty()){
-            throw new ProcessErrorException("The artist with id"+ id +" does not exist");
+        if (artistEntity.isEmpty()) {
+            throw new ProcessErrorException("The artist with id" + id + " does not exist");
         }
 
         return artistMapper.mapperToArtistResponse(artistEntity.get());

@@ -23,7 +23,7 @@ public class DeleteSongCommand
     @Override
     public void preExecute() {
         log.info("DeleteSongCommand - PreExecute");
-        if (Utils.isNull(this.input)){
+        if (Utils.isNull(this.input)) {
             throw new ProcessErrorException("The id cannot be null");
         }
     }

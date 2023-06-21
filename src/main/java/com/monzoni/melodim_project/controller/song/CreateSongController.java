@@ -27,7 +27,7 @@ public class CreateSongController {
 
     @PostMapping()
     @ApiOperation(value = MemberConstant.TAG_CREATE_MEMBER)
-    CommonResponse<SongResponse> createSong(@Valid @RequestBody CreateSongRequest request){
+    CommonResponse<SongResponse> createSong(@Valid @RequestBody CreateSongRequest request) {
         createSongCommand.setInput(request);
         (new SafeCommandExecutor<CreateSongRequest, SongResponse>()).safeExecution(createSongCommand);
         return new CommonResponse<>(createSongCommand.getOutput());

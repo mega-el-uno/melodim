@@ -6,8 +6,6 @@ import com.monzoni.melodim_project.dto.request.song.UpdateSongRequest;
 import com.monzoni.melodim_project.dto.response.PaginationResponse;
 import com.monzoni.melodim_project.dto.response.song.SongResponse;
 
-import java.util.List;
-
 public interface SongService {
 
     SongResponse saveNewSong(CreateSongRequest createSongRequest);

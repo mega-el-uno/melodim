@@ -23,10 +23,11 @@ public class GetMemberByIdCommand
     @Override
     public void preExecute() {
         log.info("GetMemberByIdCommand PreExecute");
-        if(Utils.isNull(this.input)){
+        if (Utils.isNull(this.input)) {
             throw new ProcessErrorException("The id cannot be null");
         }
     }
+
     @Override
     protected void execute() {
         log.info("GetMemberByIdCommand Execute");
