@@ -24,10 +24,10 @@ public class UpdateSongRequest {
 
     private LocalDate releaseDate;
 
-    private Integer artist;
+    private Integer artistId;
 
-    private Integer album;
+    private Integer albumId;
 
-    private Integer genre;
+    private Integer genreId;
 
 }

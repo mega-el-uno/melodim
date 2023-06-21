@@ -1,5 +1,8 @@
 package com.monzoni.melodim_project.dto.response.song;
 
+import com.monzoni.melodim_project.dto.response.album.AlbumResponse;
+import com.monzoni.melodim_project.dto.response.artist.ArtistResponse;
+import com.monzoni.melodim_project.dto.response.genre.GenreResponse;
 import com.monzoni.melodim_project.model.entity.AlbumEntity;
 import com.monzoni.melodim_project.model.entity.ArtistEntity;
 import com.monzoni.melodim_project.model.entity.GenreEntity;
@@ -22,10 +25,10 @@ public class SongResponse {
 
     private LocalDate releaseDate;
 
-    private ArtistEntity artist;
+    private ArtistResponse artist;
 
-    private AlbumEntity album;
+    private AlbumResponse album;
 
-    private GenreEntity genre;
+    private GenreResponse genre;
 
 }

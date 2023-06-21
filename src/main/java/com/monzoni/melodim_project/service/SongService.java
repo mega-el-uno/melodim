@@ -1,14 +1,14 @@
 package com.monzoni.melodim_project.service;
 
 import com.monzoni.melodim_project.dto.request.song.CreateSongRequest;
+import com.monzoni.melodim_project.dto.request.song.GetSongByPageRequest;
 import com.monzoni.melodim_project.dto.request.song.UpdateSongRequest;
+import com.monzoni.melodim_project.dto.response.PaginationResponse;
 import com.monzoni.melodim_project.dto.response.song.SongResponse;
 
 import java.util.List;
 
 public interface SongService {
-
-    List<SongResponse> getAllSongList();
 
     SongResponse saveNewSong(CreateSongRequest createSongRequest);
 
@@ -20,4 +20,5 @@ public interface SongService {
 
     SongResponse getSongById(Integer id);
 
+    PaginationResponse<SongResponse> getSongByPage(GetSongByPageRequest request);
 }

@@ -8,10 +8,7 @@ import com.monzoni.melodim_project.dto.response.song.SongResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(tags = SongConstant.TAG_NAME, description = SongConstant.TAG_DESCRIPTION)
 @RequestMapping(value = SongConstant.BASE_PATH)
@@ -21,7 +18,7 @@ public class DeleteSongController {
 
     private final DeleteSongCommand deleteSongCommand;
 
-    @PutMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}")
     @ApiOperation(value = SongConstant.TAG_DELETE_SONG)
     CommonResponse<SongResponse> deleteSongById(@PathVariable Integer id){
         deleteSongCommand.setInput(id);

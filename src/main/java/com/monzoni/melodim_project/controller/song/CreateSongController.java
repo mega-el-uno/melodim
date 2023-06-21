@@ -12,12 +12,14 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
 @Api(tags = SongConstant.TAG_NAME, description = SongConstant.TAG_DESCRIPTION)
-@RestController(SongConstant.BASE_PATH)
+@RequestMapping(value = SongConstant.BASE_PATH)
+@RestController
 @RequiredArgsConstructor
 public class CreateSongController {
 

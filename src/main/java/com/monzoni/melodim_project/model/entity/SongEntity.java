@@ -27,15 +27,15 @@ public class SongEntity {
     @Column(name = "release_date_")
     private LocalDate releaseDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = ArtistEntity.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = ArtistEntity.class)
     @JoinColumn(name = "artist_id_")
     private ArtistEntity artist;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = AlbumEntity.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = AlbumEntity.class)
     @JoinColumn(name = "album_id_")
     private AlbumEntity album;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = GenreEntity.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = GenreEntity.class)
     @JoinColumn(name = "genre_id_")
     private GenreEntity genre;
 

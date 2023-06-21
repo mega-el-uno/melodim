@@ -11,19 +11,21 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
 @Api(tags = SongConstant.TAG_NAME, description = SongConstant.TAG_DESCRIPTION)
-@RestController(SongConstant.BASE_PATH)
+@RequestMapping(value = SongConstant.BASE_PATH)
+@RestController
 @RequiredArgsConstructor
 public class UpdateSongController {
 
     private final UpdateSongCommand updateSongCommand;
 
-    @PutMapping
-    @ApiOperation(value = SongConstant.TAG_DELETE_SONG)
+    @PutMapping()
+    @ApiOperation(value = SongConstant.TAG_UPDATE_SONG)
     CommonResponse<SongResponse> updateSong(@Valid @RequestBody UpdateSongRequest request){
         updateSongCommand.setInput(request);
         (new SafeCommandExecutor<UpdateSongRequest, SongResponse>()).safeExecution(updateSongCommand);

@@ -22,12 +22,12 @@ public class CreateSongRequest {
     private LocalDate releaseDate;
 
     @NotNull
-    private Integer artist;
+    private Integer artistId;
 
     @NotNull
-    private Integer album;
+    private Integer albumId;
 
     @NotNull
-    private Integer genre;
+    private Integer genreId;
 
 }
