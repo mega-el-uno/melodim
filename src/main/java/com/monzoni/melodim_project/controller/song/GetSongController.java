@@ -60,6 +60,4 @@ public class GetSongController {
                 .safeExecution(getSongByPageCommand);
         return new CommonResponse<>(getSongByPageCommand.getOutput());
     }
-
-
 }
