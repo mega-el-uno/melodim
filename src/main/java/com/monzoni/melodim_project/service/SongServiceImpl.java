@@ -111,7 +111,7 @@ public class SongServiceImpl implements SongService {
         PaginationResponse<SongResponse> response = new PaginationResponse<>();
 
         Sort sort = Specifications.buildSorting(request.getOrder(), request.getDirection());
-        PageRequest pageRequest = PageRequest.of(request.getPage() - 1, request.getSize(), sort);
+        PageRequest pageRequest = PageRequest.of(request.getPage(), request.getSize(), sort);
 
         Page<SongEntity> songEntityPage = songRepository.findAll(buildSpecification(request), pageRequest);
         List<SongResponse> songResponseList = songEntityPage.get()

@@ -36,7 +36,7 @@ public class GetSongController {
     @GetMapping
     @ApiOperation(value = SongConstant.TAG_GET_SONG + "by page")
     CommonResponse<PaginationResponse<SongResponse>> getSongByPage(
-            @RequestParam(defaultValue = "1") Integer page,
+            @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "ASC") SortDirection direction,
             @RequestParam(required = false) SongOrderCriteria order,
