@@ -7,6 +7,7 @@ import com.monzoni.melodim_project.controller.SongOrderCriteria;
 import com.monzoni.melodim_project.controller.SortDirection;
 import com.monzoni.melodim_project.controller.constant.SongConstant;
 import com.monzoni.melodim_project.dto.request.song.GetSongByPageRequest;
+import com.monzoni.melodim_project.dto.response.CommonPaginationResponse;
 import com.monzoni.melodim_project.dto.response.CommonResponse;
 import com.monzoni.melodim_project.dto.response.PaginationResponse;
 import com.monzoni.melodim_project.dto.response.song.SongResponse;
@@ -35,7 +36,7 @@ public class GetSongController {
 
     @GetMapping
     @ApiOperation(value = SongConstant.TAG_GET_SONG + "by page")
-    CommonResponse<PaginationResponse<SongResponse>> getSongByPage(
+    CommonPaginationResponse getSongByPage(
             @RequestParam(defaultValue = "0") Integer page,
             @RequestParam(defaultValue = "10") Integer size,
             @RequestParam(defaultValue = "ASC") SortDirection direction,
@@ -56,8 +57,10 @@ public class GetSongController {
                 .genre(genre)
                 .build();
         getSongByPageCommand.setInput(request);
+
         (new SafeCommandExecutor<GetSongByPageRequest, PaginationResponse<SongResponse>>())
                 .safeExecution(getSongByPageCommand);
-        return new CommonResponse<>(getSongByPageCommand.getOutput());
+
+        return new CommonPaginationResponse(getSongByPageCommand.getOutput());
     }
 }
