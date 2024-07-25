@@ -35,6 +35,7 @@ public class GetAlbumController {
     @ApiOperation(value = AlbumConstant.TAG_GET_ALBUM)
     @GetMapping(value = "/{id}")
     public CommonResponse<AlbumResponse> getAlbumById(@PathVariable Integer id) {
+        //please remove this line, just added to run a new deployment
         getAlbumByIdCommand.setInput(id);
         new SafeCommandExecutor<Integer, AlbumResponse>().safeExecution(getAlbumByIdCommand);
         return new CommonResponse<>(getAlbumByIdCommand.getOutput());
